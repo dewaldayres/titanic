@@ -45,7 +45,7 @@
   # loading data
   # ============
   
-  train <- read.table("./data/train.csv", header = TRUE, sep = ",", stringsAsFactors = F)
+  train <- read.table("./src/data/train.csv", header = TRUE, sep = ",", stringsAsFactors = F)
   
   
   # ===============

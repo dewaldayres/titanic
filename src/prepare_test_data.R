@@ -23,6 +23,7 @@
   library(dplyr)
   library(stringr)
   
+  getwd()
   
   # =======
   # sources 
