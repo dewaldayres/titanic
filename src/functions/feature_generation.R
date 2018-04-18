@@ -1,14 +1,36 @@
-feature_generation <- function(df) {
+
+# ======================
+# generate title feature 
+# ======================
+
+feature_generation_title <- function(df) {
   
-  # title
   df$Title <- gsub('(.*, )|(\\..*)', '', df$Name)
   
-  # family size 
-  # calculated by adding all parents and siblings, and the passenger
-  df$FamilySize <- df$SibSp + df$Parch + 1 
+  return(df)
+}
+
+
+# ============================
+# generate family size feature 
+# ============================
+
+feature_generation_family_size <- function(df) {
   
-  # cabin level 
+  df$FamilySize <- df$SibSp + df$Parch + 1 
+
+  return(df)
+}
+
+
+# ============================
+# generate cabin level feature 
+# ============================
+
+feature_generation_cabin_level <- function(df) {
+  
   df$Level <- substr(df$Cabin,1,1)
   
   return(df)
 }
+

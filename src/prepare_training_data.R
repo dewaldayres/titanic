@@ -8,8 +8,9 @@
   # Script functionality
   # 
   #   * loading training data
-  #   * data imputation
+  #   * column mappings
   #   * data mappings 
+  #   * data imputation
   #   * feature generation 
   #   * pre-and post-cleanup
   # 
@@ -24,13 +25,15 @@
   library(stringr)
   
   
-  # =======
-  # sources 
-  # =======
+  # ====================
+  # source all functions
+  # ====================
   
-  source("./src/functions/data_mappings.R")
-  source("./src/functions/feature_generation.R")
-  source("./src/functions/data_imputation.R")
+  source_path <- "./src/functions/"
+  files <- list.files(source_path)
+  
+  for (f in files)
+    source(paste(source_path,f, sep=""))
   
   
   # ===========
@@ -49,39 +52,50 @@
   
   
   # ===============
-  # data imputation
+  # column mappings 
   # ===============
   
-  # train <- data_imputation(train)
+  train <- column_mappings(train)
   
   
   # =============
   # data mappings 
   # =============
   
-  train <- data_mappings(train)
+  train <- data_mapping_embarkation_port(train)
+  train <- data_mapping_gender(train)
+  
+  
+  # ===============
+  # data imputation
+  # ===============
+  
+  train <- impute_fare(train, "Southampton", "1")
+  train <- impute_fare(train, "Southampton", "2")
+  train <- impute_fare(train, "Southampton", "3")
   
   
   # ==================
   # feature generation 
   # ==================
   
-  train <- feature_generation(train)
-  
+  train <- feature_generation_cabin_level(train)
+  train <- feature_generation_family_size(train)
+  train <- feature_generation_title(train)
+
+
   
   # ============
   # post-cleanup
   # ============
   
-  if (exists("data_mappings"))             
-    rm(data_mappings)
+  # remove all objects except for the "train" dataset 
+  rm(list = list[list!="train"])
+
   
-  if (exists("feature_generation"))        
-    rm(feature_generation)
   
-  if (exists("data_imputation"))           
-    rm(data_imputation)
   
+
 
 
 

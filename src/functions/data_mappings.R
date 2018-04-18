@@ -1,11 +1,26 @@
-data_mappings <- function(df) {
+
+# ====================
+# map embarkation port 
+# ====================
+
+data_mapping_embarkation_port <- function(df) {
   
-  df$Embarked[df$Embarked=="C"] <- "Cherbourg"
-  df$Embarked[df$Embarked=="Q"] <- "Queenstown"
-  df$Embarked[df$Embarked=="S"] <- "Southampton"
+  df$embarked[df$embarked=="C"] <- "Cherbourg"
+  df$embarked[df$embarked=="Q"] <- "Queenstown"
+  df$embarked[df$embarked=="S"] <- "Southampton"
   
-  df$Sex[df$Sex=="female"] <- "Female"
-  df$Sex[df$Sex=="male"] <- "Male"
+  return(df)
+}
+
+
+# ==========
+# map gender 
+# ==========
+
+data_mapping_gender <- function(df) {
+  
+  df$gender[df$gender=="female"] <- "Female"
+  df$gender[df$gender=="male"] <- "Male"
   
   return(df)
 }
