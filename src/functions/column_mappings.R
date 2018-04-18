@@ -1,4 +1,8 @@
 
+# ===================================
+# map column names to be more uniform
+# ===================================
+
 column_mappings <- function(df) {
   
   colnames(df)[colnames(df) == 'PassengerId'] <- 'passenger_id'

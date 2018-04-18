@@ -5,7 +5,7 @@
 
 feature_generation_title <- function(df) {
   
-  df$Title <- gsub('(.*, )|(\\..*)', '', df$Name)
+  df$title <- gsub('(.*, )|(\\..*)', '', df$name)
   
   return(df)
 }
@@ -17,7 +17,7 @@ feature_generation_title <- function(df) {
 
 feature_generation_family_size <- function(df) {
   
-  df$FamilySize <- df$SibSp + df$Parch + 1 
+  df$family_size <-  df$siblings_spouses + df$parents_children + 1 
 
   return(df)
 }
@@ -29,7 +29,7 @@ feature_generation_family_size <- function(df) {
 
 feature_generation_cabin_level <- function(df) {
   
-  df$Level <- substr(df$Cabin,1,1)
+  df$level <- substr(df$cabin,1,1)
   
   return(df)
 }

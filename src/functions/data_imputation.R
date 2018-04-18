@@ -1,19 +1,47 @@
-impute_fare <- function(df, param_embarked, param_passenger_class) {
-  
-	# all passengers from a specific embarkation port travelling under a specific passenger class with no fare
-	no_fare <- subset(df, 
-						embarked == param_embarked & 
-						passenger_class == param_passenger_class & 
-						fare == "0")
 
+# ===========
+# impute fare
+# ===========
 
-	# all passengers from a specific embarkation port travelling under a specific passenger class with valid fare
-	valid_fare <- subset(df, 
-						embarked == param_embarked & 
-						passenger_class == param_passenger_class & 
-						fare != "0")
-					   
-	df[no_fare$passenger_id,]$fare <- median(valid_fare$fare)
+data_imputation_fare <- function(prm_df) {
   
-  return(df)
+  # obtain a list of all embarkation ports and passenger classes with no fare
+  x <- prm_df %>% 
+    filter(fare=="0") %>% 
+    distinct(embarked, passenger_class) %>%
+    select(embarked, passenger_class) %>%
+    arrange(embarked, passenger_class)
+  
+  # process list and update median fare 
+  for (i in 1:nrow(x))
+  {
+    prm_df <- calculate_median_fare(prm_df, x[i,1], x[i,2])
+  }
+  
+  return(prm_df)
 }
+
+
+
+calculate_median_fare <- function(prm_df, prm_embarked, prm_passenger_class) { 
+
+  # all passengers from a specific embarkation port travelling under a specific passenger class with no fare
+  no_fare <- prm_df %>% 
+    filter(embarked == prm_embarked & 
+             passenger_class == prm_passenger_class & 
+             fare == "0")
+  
+  # all passengers from a specific embarkation port travelling under a specific passenger class with valid fare
+  valid_fare <- prm_df %>% 
+    filter(embarked == prm_embarked & 
+             passenger_class == prm_passenger_class & 
+             fare != "0")
+  
+  # update fare with median 				   
+  prm_df[no_fare$passenger_id,]$fare <- median(valid_fare$fare)
+  
+  return(prm_df) 
+}
+
+
+

@@ -70,9 +70,7 @@
   # data imputation
   # ===============
   
-  train <- impute_fare(train, "Southampton", "1")
-  train <- impute_fare(train, "Southampton", "2")
-  train <- impute_fare(train, "Southampton", "3")
+  train <- data_imputation_fare(train)
   
   
   # ==================
@@ -84,13 +82,12 @@
   train <- feature_generation_title(train)
 
 
-  
   # ============
   # post-cleanup
   # ============
   
   # remove all objects except for the "train" dataset 
-  rm(list = list[list!="train"])
+  rm(list = ls()[ls()!="train"])
 
   
   
