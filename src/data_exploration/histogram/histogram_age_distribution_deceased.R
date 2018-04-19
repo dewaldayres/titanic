@@ -1,5 +1,5 @@
 
-deceased <- passengers %>% filter(survived=="0")
+deceased <- passengers %>% filter(survived=="No")
 
 # =========================
 # deceased age distribution

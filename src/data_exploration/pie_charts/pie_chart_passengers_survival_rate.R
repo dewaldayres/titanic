@@ -5,8 +5,6 @@ passengers <- train %>%
   arrange(desc(survived)) %>% 
   mutate(pos = cumsum(count)- count/2)
 
-passengers$survived[passengers$survived=="1"] <- "Yes"
-passengers$survived[passengers$survived=="0"] <- "No"
 total <- sum(passengers$count)
 passengers$percentage <- paste(format(round(passengers$count / total * 100, 2), nsmall = 2), "%")
 

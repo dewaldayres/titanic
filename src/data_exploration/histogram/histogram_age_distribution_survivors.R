@@ -1,5 +1,5 @@
 
-survivors <- train %>% filter(survived=="1")
+survivors <- train %>% filter(survived=="Yes")
 
 # =========================
 # survivor age distribution

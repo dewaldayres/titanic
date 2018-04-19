@@ -53,6 +53,7 @@
   # data mappings 
   # =============
   
+  train <- data_mapping_survived(train)
   train <- data_mapping_embarkation_port(train)
   train <- data_mapping_gender(train)
   
