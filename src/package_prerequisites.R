@@ -1,12 +1,4 @@
 
-# ================
-# install packages
-# ================
-
-install.packages("dplyr")
-install.packages("plotly")
-
-
 # =============
 # load packages
 # =============
