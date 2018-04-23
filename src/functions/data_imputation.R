@@ -27,14 +27,14 @@ calculate_median_fare <- function(prm_df, prm_embarked, prm_passenger_class) {
 
   # all passengers from a specific embarkation port travelling under a specific passenger class with no fare
   no_fare <- prm_df %>% 
-    filter(embarked == prm_embarked & 
-             passenger_class == prm_passenger_class & 
+    filter(embarked == prm_embarked,  
+             passenger_class == prm_passenger_class, 
              fare == "0")
   
   # all passengers from a specific embarkation port travelling under a specific passenger class with valid fare
   valid_fare <- prm_df %>% 
-    filter(embarked == prm_embarked & 
-             passenger_class == prm_passenger_class & 
+    filter(embarked == prm_embarked,  
+             passenger_class == prm_passenger_class, 
              fare != "0")
   
   # update fare with median 				   
