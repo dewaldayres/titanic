@@ -1,7 +1,4 @@
 
-  passengers <- train
-  
-  
   ggplot() + 
     geom_bar(data=passengers, aes(as.character(survived), fill=as.character(survived))) + 
     ggtitle("Survival analysis for passengers") + 

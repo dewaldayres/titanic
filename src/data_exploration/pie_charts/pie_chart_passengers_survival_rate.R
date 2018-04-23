@@ -1,16 +1,17 @@
 
-passengers <- train %>% 
+df <- passengers %>% 
+  filter(set=="train") %>% 
   group_by(survived) %>% 
   summarise(count = n()) %>% 
   arrange(desc(survived)) %>% 
   mutate(pos = cumsum(count)- count/2)
 
-total <- sum(passengers$count)
-passengers$percentage <- paste(format(round(passengers$count / total * 100, 2), nsmall = 2), "%")
+total <- sum(df$count)
+df$percentage <- paste(format(round(df$count / total * 100, 2), nsmall = 2), "%")
 
 
 
-ggplot(data=passengers) +
+ggplot(data=df) +
   geom_bar(stat="identity", width = 1, aes(x="", y=count, fill=survived)) +
   coord_polar("y", start=0) +
   theme_void() + 

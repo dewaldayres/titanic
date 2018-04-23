@@ -17,6 +17,7 @@ column_mappings <- function(df) {
   colnames(df)[colnames(df) == 'Fare'] <- 'fare'
   colnames(df)[colnames(df) == 'Cabin'] <- 'cabin'
   colnames(df)[colnames(df) == 'Embarked'] <- 'embarked'
+  colnames(df)[colnames(df) == 'Set'] <- 'set'
   
   return(df)
 }
