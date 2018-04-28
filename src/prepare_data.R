@@ -3,8 +3,9 @@
 # load packages
 # =============
 
-library(dplyr)    # data manipulation
-library(plotly)   # data visualisation
+library(dplyr)            # data manipulation
+library(plotly)           # data visualisation
+library(randomForest)     # prediction
 
 
 # ===========
@@ -61,10 +62,13 @@ passengers <- data_mapping_gender(passengers)
 
 
 # ===============
-# data imputation
+# data imputationa
+
 # ===============
 
 passengers <- data_imputation_fare(passengers)
+passengers <- data_imputation_embarkation(passengers)
+passengers <- data_imputation_age(passengers)
 
 
 # ==================
