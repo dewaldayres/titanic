@@ -30,8 +30,8 @@ for (f in files)
 # loading data
 # ============
 
-train <- read.table("./src/data/train.csv", header = TRUE, sep = ",", stringsAsFactors = F)
-test <- read.table("./src/data/test.csv", header = TRUE, sep = ",", stringsAsFactors = F)
+train <- read.table("./src/data/train.csv", header=T, sep=",", stringsAsFactors=F)
+test <- read.table("./src/data/test.csv", header=T, sep=",", stringsAsFactors=F)
 
 
 # ================
@@ -61,10 +61,9 @@ passengers <- data_mapping_embarkation_port(passengers)
 passengers <- data_mapping_gender(passengers)
 
 
-# ===============
-# data imputationa
-
-# ===============
+# ================
+# data imputations
+# ================
 
 passengers <- data_imputation_fare(passengers)
 passengers <- data_imputation_embarkation(passengers)
