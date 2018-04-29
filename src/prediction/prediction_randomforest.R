@@ -17,13 +17,13 @@ test <- within(test, rm(survived))
 
 # fit <- randomForest(as.factor(survived) ~ passenger_class + gender + age + siblings_spouses + parents_children + fare + level + family_size + title, # 76.55
 # fit <- randomForest(as.factor(survived) ~ passenger_class + gender + age + fare + level + family_size + title, # 77.03 
-# fit <- randomForest(as.factor(survived) ~ passenger_class + gender + fare + family_size + title, # 80.38
+ fit <- randomForest(as.factor(survived) ~ passenger_class + gender + fare + family_size + title, # 80.38
 # fit <- randomForest(as.factor(survived) ~ passenger_class + gender + family_size + title, # 78.94
 # fit <- randomForest(as.factor(survived) ~ passenger_class + fare + title,                 # 78.46
-fit <- randomForest(as.factor(survived) ~ age + fare + title + gender, 
+# fit <- randomForest(as.factor(survived) ~ age + fare + title + gender, 
                     data=train, 
                     importance=TRUE, 
-                    ntree=2000)
+                    ntree=3000)
 
 
 
