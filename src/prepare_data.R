@@ -79,6 +79,13 @@ passengers <- feature_generation_family_size(passengers)
 passengers <- feature_generation_title(passengers)
 
 
+# ============================
+# mutate characters to factors 
+# ============================
+
+passengers <- passengers %>% mutate_if(is.character,as.factor)
+
+
 # ============
 # post-cleanup
 # ============

@@ -20,4 +20,5 @@ column_mappings <- function(df) {
   colnames(df)[colnames(df) == 'Set'] <- 'set'
   
   return(df)
+  
 }
