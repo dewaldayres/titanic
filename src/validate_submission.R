@@ -38,9 +38,10 @@ answers <- data_mapping_gender(answers)
 # mutate characters to factors 
 # ============================
 
-answers <- answers %>% mutate_if(is.character,as.factor)
+answers <- answers %>% mutate_if(is.factor,as.character)
+test <- test %>% mutate_if(is.factor,as.character)
 
 
 
 
-validate <- inner_join(test, answers, by=c("name"="name", "gender"="sex"))
+validate <- left_join(test, answers, by=c("name"="name"))
