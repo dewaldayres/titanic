@@ -14,15 +14,16 @@ for (f in files)
 # loading data
 # ============
 
-answers <- read.table("./src/data/answers.csv", header=T, sep=",", stringsAsFactors=T)
+answers <- read.table("./src/data/answers.csv", header=T, sep=",", stringsAsFactors=F)
 test <- passengers %>% filter(set=="test") %>% mutate_if(is.factor,as.character)
 
 
-# ===============
-# column mappings 
-# ===============
+# ============================
+# mutate factors to characters 
+# ============================
 
-answers <- column_mappings(answers)
+answers <- answers %>% mutate_if(is.factor,as.character)
+test <- test %>% mutate_if(is.factor,as.character)
 
 
 # =============
@@ -34,14 +35,34 @@ answers <- data_mapping_embarkation_port(answers)
 answers <- data_mapping_gender(answers)
 
 
-# ============================
-# mutate characters to factors 
-# ============================
-
-answers <- answers %>% mutate_if(is.factor,as.character)
-test <- test %>% mutate_if(is.factor,as.character)
-
-
-
+# ==============================
+# join test dataset with answers
+# ==============================
 
 validate <- left_join(test, answers, by=c("name"="name"))
+
+
+
+# =====================
+# remove duplicate rows 
+# =====================
+
+validate <- validate[-c(2,8),]
+
+
+# 
+# 
+# 
+
+matched <- validate %>% filter(survived.x==survived.y)  %>% select(survived.x, survived.y)
+non.matched <- validate %>% filter(survived.x!=survived.y) %>% select(survived.x, survived.y)
+
+
+validate <- validate %>% 
+  mutate(matched=if_else(survived.x==survived.y,"matched","novalue"))
+
+x <- validate %>% filter(matched=="novalue")
+
+
+
+
