@@ -51,15 +51,13 @@ validate <- validate[-c(2,8),]
 
 
 # 
+# remove 
 # 
-# 
-
-matched <- validate %>% filter(survived.x==survived.y)  %>% select(survived.x, survived.y)
-non.matched <- validate %>% filter(survived.x!=survived.y) %>% select(survived.x, survived.y)
+gsub("\"","ot",x)
 
 
 validate <- validate %>% 
-  mutate(matched=if_else(survived.x==survived.y,"matched","novalue"))
+  mutate(matched=if_else(survived.x==survived.y,"Y","N"))
 
 x <- validate %>% filter(matched=="novalue")
 
