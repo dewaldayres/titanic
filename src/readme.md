@@ -1,5 +1,4 @@
 # TITANIC DATA ANALYSIS
----
 
 My stab at data analysis on a dataset with passengers aboard the Titanic. 
 
